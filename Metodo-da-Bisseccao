@@ -1,0 +1,45 @@
+#NOME: EDUARDO GARCEZ FERREIRA
+import numpy as np
+import matplotlib.pyplot as plt
+
+#INICIANDO VETORES
+vet_atual= [0,0]
+vet_atual[0]=0.5#VALOR INICAL DA POSICAO 0
+vet_atual[1]=2.5#VALOR INICAL DA POSICAO 1
+vet_esq= [0,0]
+vet_dir = [0,0]
+
+flag_estimativa=True
+print('Valor de X: \tSaída da Função\t')
+vet_x0_ant=0
+while(flag_estimativa==True):
+    
+    x0 = (vet_atual[0]+vet_atual[1])/2# ACHANDO O SUBINTERVALO
+    
+    vet_esq[0] = vet_atual[0]
+    vet_esq[1]= x0
+    
+    vet_dir[0]= x0
+    vet_dir[1]=vet_atual[1]
+    #print("Erro em (%)",((vet_esq[1]-vet_x0_ant)/vet_esq[1]))
+
+    if((abs(vet_esq[1]-vet_x0_ant)/vet_esq[1])<0.00001):
+        flag_estimativa=False
+    #CACULANDO VALORES DO INTERVALO INCIAL ATUAL E DO SUB INTERVALO
+    res1= 1 - ((20**2) / (9.8 * (3*vet_esq[0] + (vet_esq[0]**2)/2)**3)) * (3 + vet_esq[0])
+    res2 =1 - ((20**2) / (9.8 * (3*vet_esq[1] + (vet_esq[1]**2)/2)**3)) * (3 + vet_esq[1])
+    res3= 1 - ((20**2) / (9.8 * (3*vet_dir[1] + (vet_dir[1]**2)/2)**3)) * (3 + vet_dir[1])
+    print(vet_esq[0],'\t','\t',res1)#RESULTADO DO INTERVALO INFERIOR
+    print(vet_esq[1],'\t','\t',res2)#RESULTADO DO SUBINTERVALO 
+    print(vet_dir[1],'\t','\t',res3)#RESULTADO DO INTERVALO SUPERIOR
+    if(res1*res2<0):
+        vet_atual[0]=vet_esq[0]
+        vet_atual[1]=vet_esq[1]
+        vet_x0_ant=vet_esq[1]
+    else:
+        vet_atual[0]= vet_dir[0]
+        vet_atual[1]= vet_dir[1]
+        vet_x0_ant=vet_dir[0] 
+
+print("Possivel raiz: ")
+print("[",vet_esq[0]," ]")
