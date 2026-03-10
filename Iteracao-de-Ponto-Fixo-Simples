@@ -1,0 +1,33 @@
+#NOME: EDUARDO GARCEZ FERREIRA
+import numpy as np
+import matplotlib.pyplot as plt
+
+x_atual=0
+x_ant=0
+erro_aprox=True
+"""""
+Crie um programa no python para encontrar raízes
+pelo método de iteração de ponto fixo simples da
+função
+com aproximação inicial 0,5. Itere até que
+0,001%.
+"""""
+#NO CASO EU ISOLEI O TERMO -X DA FUNCAO
+print('Valor de X: \tSaída da Função\t')
+x_atual= 2*(np.sin(np.sqrt(0.5)))#PRIMEIRA INTERAÇÃO
+
+x_ant = x_atual#GUARANDO INTERAÇÃO ANTERIOR
+print(x_ant,'\t','\t',x_atual)#MOSTRAR VALORES
+x_atual= 2*(np.sin(np.sqrt(x_atual)))#SEGUNDA INTERAÇÃO
+
+while(erro_aprox):
+    if((np.abs((x_atual-x_ant)/x_atual))*100<0.001):
+        erro_aprox= False
+        print(x_ant,'\t','\t',x_atual)#MOSTRAR VALORES
+    else:
+        x_ant = x_atual
+        print(x_ant,'\t','\t',x_atual)#MOSTRAR VALORES
+        x_atual= 2*(np.sin(np.sqrt(x_atual)))
+    
+print("A raiz esta convergindo para :")
+print("[",x_atual," ]")
