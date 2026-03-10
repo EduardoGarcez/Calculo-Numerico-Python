@@ -16,7 +16,7 @@ vet_esq= [0,0]
 vet_dir = [0,0]
 
 i=0
-#print('Valores de X: \tSaída da Função\t')
+print('Valores de X: \tSaída da Função\t')
 while(i<=80):
     vet_esq[0] = vet_atual[0]
     vet_esq[1]= xr
