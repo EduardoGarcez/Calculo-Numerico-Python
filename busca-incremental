@@ -1,0 +1,46 @@
+
+#NOME: EDUARDO GARCEZ FERREIRA
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+"""
+TRABALHO 1- a
+
+Crie um programa no python para estimar raízes pelo
+método de busca incremental da função ao fim desse
+slide. O programa deverá identificar os subintervalos
+nos quais ocorre mudança de sinal dentro do
+intervalo [0;3] usando 80 subintervalos para a função
+abaixo...
+
+"""
+vet_intervalos=  np.linspace(0.1, 3 ,80)#CRIANDO VETOR DE 0 A 3 COM 80 ESPAÇOS PERFEITAMENTE DISTANCIADOS  
+resultado_anterior =0 #VALOR ANTERIOR PARA COMPARACAO
+flag= True #VALOR PARA SAIR DO WHILE
+i =0
+x1=x2=0 #VALOR DA RAIZ
+vres = np.zeros(80)#
+flag1=True # FLAG PARA CONTROLAR A ENTRADA DA VARIAVEL RESULTADO ANTEIROR
+print("=-=-= TRABALHO 1 - a =-=-=")
+print('Valor de X: \tSaída da Função\t')
+while(flag):
+    
+    resultado = np.log(vet_intervalos[i]**4)-0.7# CALCULA A FUNCAO 
+    #CASO HÁ INVESAO DE SINAL
+    if(flag1 == False and resultado*resultado_anterior<0): 
+        flag=False
+        x1= i-1
+        x2=i
+    print(vet_intervalos[i],'\t','\t',resultado)#MOSTRAR VALORES
+    i=i+1
+    resultado_anterior= resultado
+    vres[i]=resultado
+    flag1=False
+print("Possivel raiz dentro do intervalo de: ")
+print("[",vet_intervalos[x1],vet_intervalos[x2]," ]")
+plt.plot(vet_intervalos,vres)
+plt.title("Grafico da Função")
+plt.xlabel('intervalos x')
+plt.ylabel('resultados)')
+plt.show()
